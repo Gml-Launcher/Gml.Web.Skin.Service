@@ -29,7 +29,7 @@ internal abstract class TextureRequests
                 await file.CopyToAsync(fileStream);
             }
 
-            var texture = SkinHelper.Create($"http://{request.Host.Value}", userName);
+            var texture = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
             return Results.Ok(mapper.Map<UserTextureReadDto>(texture));
         }
         catch (Exception ex)
@@ -74,7 +74,7 @@ internal abstract class TextureRequests
                 await file.CopyToAsync(fileStream);
             }
 
-            var texture = SkinHelper.Create($"http://{request.Host.Value}", userName);
+            var texture = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
             return Results.Ok(mapper.Map<UserTextureReadDto>(texture));
         }
         catch (Exception ex)
@@ -97,14 +97,14 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetSkin(HttpRequest request, string userName, string? uuid)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName.Substring(2, userName.Length - 2));
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName.Substring(2, userName.Length - 2));
 
         return Task.FromResult(Results.File(user.SkinFullPath, "image/png"));
     }
 
     internal static Task<IResult> GetUserTexture(HttpRequest request, IMapper mapper, string userName)
     {
-        var texture = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var texture = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         return Task.FromResult(Results.Ok(mapper.Map<UserTextureReadDto>(texture)));
     }
@@ -128,7 +128,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetCloak(HttpRequest request, string userName, int? size = 128)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         if (!user.HasCloak) return Task.FromResult(Results.NotFound("Cloak not exists"));
 
@@ -139,7 +139,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetCloakTexture(HttpRequest request, string userName)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName.Substring(2, userName.Length - 2));
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName.Substring(2, userName.Length - 2));
 
         if (!user.HasCloak) return Task.FromResult(Results.NotFound("Cloak not exists"));
 
@@ -148,7 +148,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetSkinHead(HttpRequest request, string userName, int size = 128)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         var image = SkinViewer.SkinViewer.GetHead(user.SkinFullPath, user, size);
 
@@ -157,7 +157,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetSkinFront(HttpRequest request, string userName, int size = 128)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         var image = SkinViewer.SkinViewer.GetFront(user.SkinFullPath, user, size);
 
@@ -166,7 +166,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetSkinBack(HttpRequest request, string userName, int size = 128)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         var image = SkinViewer.SkinViewer.GetBack(user, size);
 
@@ -175,7 +175,7 @@ internal abstract class TextureRequests
 
     internal static Task<IResult> GetSkinAndCloakBack(HttpRequest request, string userName, int size = 128)
     {
-        var user = SkinHelper.Create($"http://{request.Host.Value}", userName);
+        var user = SkinHelper.Create($"{request.Scheme}://{request.Host.Value}", userName);
 
         var image = SkinViewer.SkinViewer.GetBack(user, size, true);
 
