@@ -1,4 +1,4 @@
-﻿using MapsterMapper;
+using MapsterMapper;
 using Gml.Web.Skin.Service.Core.Cloudflare;
 using Gml.Web.Skin.Service.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ namespace Gml.Web.Skin.Service.Core.Requests;
 
 internal abstract class TextureRequests
 {
-    internal static async Task<IResult> LoadSkin(HttpRequest request, [FromForm] IFormFile file, IMapper mapper,
+    internal static async Task<IResult> LoadSkin(HttpRequest request, IFormFile file, IMapper mapper,
         string userName)
     {
         if (file.Length == 0)
@@ -52,7 +52,7 @@ internal abstract class TextureRequests
 
     }
 
-    internal static async Task<IResult> LoadCloak(HttpRequest request, [FromForm] IFormFile file, IMapper mapper,
+    internal static async Task<IResult> LoadCloak(HttpRequest request, IFormFile file, IMapper mapper,
         string userName)
     {
         if (file.Length == 0)

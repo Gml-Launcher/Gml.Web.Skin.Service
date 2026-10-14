@@ -1,6 +1,6 @@
-﻿using Gml.Web.Skin.Service.Models;
+using Gml.Web.Skin.Service.Models;
 using Gml.Web.Skin.Service.Models.Dto;
-using SixLabors.ImageSharp;
+using SkiaSharp;
 
 namespace Gml.Web.Skin.Service;
 
@@ -49,11 +49,14 @@ public abstract class SkinHelper
         };
 
         if (!texture.HasSkin) return texture;
-        using var inputImage = Image.Load(texture.SkinFullPath);
-
-        texture.SkinFormat = GetSkinFormat(inputImage.Width);
-
-        inputImage.Dispose();
+        if (File.Exists(texture.SkinFullPath))
+        {
+            using var codec = SKCodec.Create(texture.SkinFullPath);
+            if (codec != null)
+            {
+                texture.SkinFormat = GetSkinFormat(codec.Info.Width);
+            }
+        }
 
         return texture;
     }

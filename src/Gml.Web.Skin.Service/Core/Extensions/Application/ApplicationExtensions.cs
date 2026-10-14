@@ -1,4 +1,4 @@
-﻿using Gml.Web.Skin.Service.Core.Requests;
+using Gml.Web.Skin.Service.Core.Requests;
 
 namespace Gml.Web.Skin.Service.Core.Extensions.Application;
 
@@ -65,7 +65,7 @@ public static class ApplicationExtensions
         app.MapGet("/skin/{userName}/full-back/{size}", TextureRequests.GetSkinAndCloakBack);
 
         app.MapGet("/cloak/{userName}", TextureRequests.GetCloakTexture);
-        app.MapPost("/cloak/{userName}", TextureRequests.LoadCloak).DisableAntiforgery();;
+        app.MapPost("/cloak/{userName}", TextureRequests.LoadCloak).DisableAntiforgery();
         app.MapDelete("/cloak/{userName}", TextureRequests.DeleteCloak);
         app.MapGet("/cloak/{userName}/front/{size}", TextureRequests.GetCloak);
 
