@@ -1,13 +1,13 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using Gml.Web.Skin.Service.Models;
 using Gml.Web.Skin.Service.Models.Dto;
 
 namespace Gml.Web.Skin.Service.Core.Mapper;
 
-public class TextureMapper : Profile
+public class TextureMapper : IRegister
 {
-    public TextureMapper()
+    public void Register(TypeAdapterConfig config)
     {
-        CreateMap<UserTexture, UserTextureReadDto>();
+        config.NewConfig<UserTexture, UserTextureReadDto>();
     }
 }

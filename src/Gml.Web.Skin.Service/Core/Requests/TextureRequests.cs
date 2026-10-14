@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using MapsterMapper;
 using Gml.Web.Skin.Service.Core.Cloudflare;
 using Gml.Web.Skin.Service.Models.Dto;
 using Microsoft.AspNetCore.Mvc;

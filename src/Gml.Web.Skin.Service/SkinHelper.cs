@@ -1,5 +1,6 @@
 ﻿using Gml.Web.Skin.Service.Models;
 using Gml.Web.Skin.Service.Models.Dto;
+using SixLabors.ImageSharp;
 
 namespace Gml.Web.Skin.Service;
 

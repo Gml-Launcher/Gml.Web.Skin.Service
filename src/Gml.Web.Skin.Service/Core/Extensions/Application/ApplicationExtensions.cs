@@ -1,5 +1,4 @@
-﻿using Gml.Web.Skin.Service.Core.Mapper;
-using Gml.Web.Skin.Service.Core.Requests;
+﻿using Gml.Web.Skin.Service.Core.Requests;
 
 namespace Gml.Web.Skin.Service.Core.Extensions.Application;
 
@@ -13,10 +12,7 @@ public static class ApplicationExtensions
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddAntiforgery();
-        builder.Services.AddAutoMapper(map =>
-        {
-            map.AddProfile<TextureMapper>();
-        });
+        builder.Services.AddMapping();
 
         builder.Services
             .AddCors(o => o.AddPolicy(_policyName, policyBuilder =>
